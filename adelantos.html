@@ -58,7 +58,8 @@
     <script>
         function getQueryParam(param) {
           var urlParams = new URLSearchParams(window.location.search);
-          return urlParams.get(param);
+          return urlParams.get(param); 
+        }
 
     function fillData() {
         document.getElementById("fecha").textContent =
@@ -75,7 +76,6 @@
           getQueryParam("observacion");       
          }
          
- }
       window.onload = function () {
         fillData();
         window.print();
