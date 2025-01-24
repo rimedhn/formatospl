@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adelanto empleado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1;
+        }
+        .title {
+            text-align: left;
+        }
+        .subtitle {
+            text-align: left;
+            margin-top: 5px;
+        }
+        .section {
+            margin-top: 20px;
+        }
+        .horizontal-line {
+            border-top: 1px solid black;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .centered {
+            text-align: center;
+        }
+        .right-aligned {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>Transporte Maritimoo Caratasca</h1>
+        <h2 class="subtitle">Comprobante de Adelanto</h2>
+    </div>
+
+    <div class="section">
+        <p>Fecha: <span id="fecha"></span></p>
+        <p>Viaje/Quincena: <span id="periodo"></span></p>
+        <div class="horizontal-line"></div>
+        <p class="left-aligned">Empleado: <span id="empleado"></span></p>
+        <p class="right-aligned">Monto: <span id="monto"></span></p>
+        <div class="horizontal-line"></div>
+        <p>Entregado por: <span id="entrego"></span></p>
+        <div class="horizontal-line"></div>
+        <p>Observaciones: <span id="observacion"></span></p>
+        <div class="horizontal-line"></div>
+        <br><br><br>
+        <p>______________________________________</p>
+        <p class="left-aligned">Firma empleado</p>
+        <div style="text-align: right">
+            <img alt="Barcode Generator TEC-IT" id="barcode" />
+        </div>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+          var urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param);
+        }
+
+    function fillData() {
+        document.getElementById("fecha").textContent =
+          getQueryParam("fecha");
+        document.getElementById("periodo").textContent =
+          getQueryParam("periodo");
+        document.getElementById("monto").textContent =
+          getQueryParam("monto");
+        document.getElementById("empleado").textContent =
+          getQueryParam("empleado");
+        document.getElementById("entrego").textContent =
+          getQueryParam("entrego");
+        document.getElementById("observacion").textContent =
+          getQueryParam("observacion");
+        }
+        
+        // Set barcode
+        document.getElementById("barcode").src =
+          "https://barcode.tec-it.com/barcode.ashx?data=" +
+          getQueryParam("Folio_1");
+        
+        // Convert amount to words (simplified version)
+        var monto = parseFloat(getQueryParam("monto"));
+        var words = numberToWords(monto);
+        document.getElementById("monto").textContent = words;
+
+      function numberToWords(number) {
+        var units = [
+          "",
+          "UN ",
+          "DOS ",
+          "TRES ",
+          "CUATRO ",
+          "CINCO ",
+          "SEIS ",
+          "SIETE ",
+          "OCHO ",
+          "NUEVE ",
+          "DIEZ ",
+          "ONCE ",
+          "DOCE ",
+          "TRECE ",
+          "CATORCE ",
+          "QUINCE ",
+          "DIECISEIS ",
+          "DIECISIETE ",
+          "DIECIOCHO ",
+          "DIECINUEVE ",
+        ];
+        var tens = [
+          "",
+          "",
+          "VEINTE ",
+          "TREINTA ",
+          "CUARENTA ",
+          "CINCUENTA ",
+          "SESENTA ",
+          "SETENTA ",
+          "OCHENTA ",
+          "NOVENTA ",
+        ];
+        var hundreds = [
+          "",
+          "CIENTO ",
+          "DOSCIENTOS ",
+          "TRESCIENTOS ",
+          "CUATROCIENTOS ",
+          "QUINIENTOS ",
+          "SEISCIENTOS ",
+          "SETECIENTOS ",
+          "OCHOCIENTOS ",
+          "NOVECIENTOS ",
+        ];
+        var scales = ["", "MIL ", "MILLON ", "MIL MILLONES ", "BILLON "];
+
+        if (number === 0) return "CERO LEMPIRAS";
+
+        var words = "";
+        var scaleIndex = 0;
+
+        while (number > 0) {
+          if (number % 1000 !== 0) {
+            var scale = scales[scaleIndex];
+            var partWords = numberToWordsLessThanThousand(number % 1000);
+
+            // Special case for thousands
+            if (scaleIndex === 1 && number % 1000 === 1) {
+              words = scale + words;
+            } else {
+              words = partWords + scale + words;
+            }
+          }
+          number = Math.floor(number / 1000);
+          scaleIndex++;
+        }
+
+        return words.trim() + " LEMPIRAS";
+
+        function numberToWordsLessThanThousand(n) {
+          var words = "";
+
+          if (n >= 100) {
+            if (n === 100) {
+              words += "CIEN ";
+            } else {
+              words += hundreds[Math.floor(n / 100)];
+            }
+            n %= 100;
+          }
+
+          if (n >= 20) {
+            words += tens[Math.floor(n / 10)];
+            if (n % 10 !== 0) {
+              if (Math.floor(n / 10) === 2) {
+                words = words.slice(0, -1); // Remove space for "VEINTI"
+                words += "I";
+              } else {
+                words += "Y ";
+              }
+              words += units[n % 10];
+            }
+          } else if (n >= 1) {
+            words += units[n];
+          }
+
+          return words;
+        }
+      }
+
+      window.onload = function () {
+        fillData();
+        window.print();
+      };
+
+    </script>
+    
+</body>
+</html>
