@@ -44,7 +44,7 @@
         <p>Viaje/Quincena: <span id="periodo"></span></p>
         <div class="horizontal-line"></div>
         <p class="left-aligned">Empleado: <span id="empleado"></span></p>
-        <p class="right-aligned">Monto: <span id="monto"></span></p>
+        <p class="right-aligned">"("<span id="montoLetras">") "</span><span id="monto">Monto: </span></p>
         <div class="horizontal-line"></div>
         <p>Entregado por: <span id="entrego"></span></p>
         <div class="horizontal-line"></div>
@@ -82,7 +82,7 @@
         // Set barcode
         document.getElementById("barcode").src =
           "https://barcode.tec-it.com/barcode.ashx?data=" +
-          getQueryParam("Folio_1");
+          getQueryParam("barcode");
         
         // Convert amount to words (simplified version)
         var monto = parseFloat(getQueryParam("monto"));
