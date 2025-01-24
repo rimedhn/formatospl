@@ -62,7 +62,6 @@
         function getQueryParam(param) {
           var urlParams = new URLSearchParams(window.location.search);
           return urlParams.get(param);
-        }
 
     function fillData() {
         document.getElementById("fecha").textContent =
@@ -82,6 +81,7 @@
         document.getElementById("barcode").src =
           "https://barcode.tec-it.com/barcode.ashx?data=" +
           getQueryParam("barcode");
+         }
          }
         
 
