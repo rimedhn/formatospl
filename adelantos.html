@@ -86,7 +86,7 @@
         
         // Convert amount to words (simplified version)
         var monto = parseFloat(getQueryParam("monto"));
-        var words = numberToWords(monto);
+        var words = numberToWords("monto");
         document.getElementById("montoLetras").textContent = words;
 
       function numberToWords(number) {
