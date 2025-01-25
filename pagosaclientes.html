@@ -37,17 +37,22 @@
 <body>
     <div class="title">
         <h1>Transporte Marìtimo Caratasca</h1>
-        <h2 class="subtitle">Comprobante de compra</h2>
+        <h2 class="subtitle">Comprobante de pago a cliente</h2>
     </div>
 
     <div class="section">
         <p>Fecha: <span id="fecha"></span></p>
+        <p>Cliente: <span id="cliente"></span></p>
         <p>Viaje: <span id="viaje"></span></p>
+        <p>Destino de la carga: <span id="destino"></span></p>
+        <p>Factura en sistema: <span id="factura"></span></p>
+
         <div class="horizontal-line"></div>
-        <p class="left-aligned">Proveedor: <span id="proveedor"></span></p>
-        <p class="right-aligned">Monto: <span id="monto"></span></p>
-        <div class="horizontal-line"></div>
-        <p>Realizado por: <span id="realizo"></span></p>
+        <p class="right-aligned">Saldo anterior: <span id="saldoAnterior"></span></p>
+        <p class="right-aligned">Pago: <span id="pago"></span></p>
+        <p class="right-aligned">Saldo pendiente: <span id="saldoPendiente"></span></p>
+        <p class="right-aligned">Tipo de pago: <span id="tipoPago"></span></p>
+        <p class="left-aligned">Realizado por: <span id="realizo"></span></p>
         <div class="horizontal-line"></div>
         <p>Observaciones: <span id="observacion"></span></p>
         <div class="horizontal-line"></div>
@@ -65,12 +70,22 @@
     function fillData() {
         document.getElementById("fecha").textContent =
           getQueryParam("fecha");
+        document.getElementById("cliente").textContent =
+          getQueryParam("cliente");
         document.getElementById("viaje").textContent =
           getQueryParam("viaje");
-        document.getElementById("monto").textContent =
-          getQueryParam("monto");
-        document.getElementById("proveedor").textContent =
-          getQueryParam("proveedor");
+document.getElementById("destino").textContent =
+          getQueryParam("destino");
+document.getElementById("factura").textContent =
+          getQueryParam("factura");
+        document.getElementById("saldoAnterior").textContent =
+          getQueryParam("saldoAnterior");
+document.getElementById("pago").textContent =
+          getQueryParam("pago");
+        document.getElementById("saldoPendiente").textContent =
+          getQueryParam("saldoPendiente");
+        document.getElementById("tipoPago").textContent =
+          getQueryParam("tipoPago");
         document.getElementById("realizo").textContent =
           getQueryParam("realizo");
         document.getElementById("observacion").textContent =
