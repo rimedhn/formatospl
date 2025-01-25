@@ -9,6 +9,7 @@
             font-family: Arial, sans-serif;
             font-size: 15px;
             line-height: 1;
+            margin: 25px;
         }
         .title {
             text-align: left;
@@ -36,23 +37,23 @@
 <body>
     <div class="title">
         <h1>Transporte Marìtimo Caratasca</h1>
-        <h2 class="subtitle">Comprobante de Adelanto</h2>
+        <h2 class="subtitle">Comprobante de compra</h2>
     </div>
 
     <div class="section">
         <p>Fecha: <span id="fecha"></span></p>
-        <p>Viaje/Quincena: <span id="periodo"></span></p>
+        <p>Viaje: <span id="viaje"></span></p>
         <div class="horizontal-line"></div>
-        <p class="left-aligned">Empleado: <span id="empleado"></span></p>
+        <p class="left-aligned">Proveedor: <span id="proveedor"></span></p>
         <p class="right-aligned">Monto: <span id="monto"></span></p>
         <div class="horizontal-line"></div>
-        <p>Entregado por: <span id="entrego"></span></p>
+        <p>Realizado por: <span id="realizo"></span></p>
         <div class="horizontal-line"></div>
         <p>Observaciones: <span id="observacion"></span></p>
         <div class="horizontal-line"></div>
         <br><br><br>
         <p>______________________________________</p>
-        <p class="left-aligned">Firma empleado</p>
+        <p class="left-aligned">Firma</p>
     </div>
 
     <script>
@@ -64,14 +65,14 @@
     function fillData() {
         document.getElementById("fecha").textContent =
           getQueryParam("fecha");
-        document.getElementById("periodo").textContent =
-          getQueryParam("periodo");
+        document.getElementById("viaje").textContent =
+          getQueryParam("viaje");
         document.getElementById("monto").textContent =
           getQueryParam("monto");
-        document.getElementById("empleado").textContent =
-          getQueryParam("empleado");
-        document.getElementById("entrego").textContent =
-          getQueryParam("entrego");
+        document.getElementById("proveedor").textContent =
+          getQueryParam("proveedor");
+        document.getElementById("realizo").textContent =
+          getQueryParam("realizo");
         document.getElementById("observacion").textContent =
           getQueryParam("observacion");       
          }
