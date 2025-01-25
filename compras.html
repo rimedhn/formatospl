@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adelanto empleado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1;
+        }
+        .title {
+            text-align: left;
+        }
+        .subtitle {
+            text-align: left;
+            margin-top: 5px;
+        }
+        .section {
+            margin-top: 20px;
+        }
+        .horizontal-line {
+            border-top: 1px solid black;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .centered {
+            text-align: center;
+        }
+        .right-aligned {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>Transporte Marìtimo Caratasca</h1>
+        <h2 class="subtitle">Comprobante de Adelanto</h2>
+    </div>
+
+    <div class="section">
+        <p>Fecha: <span id="fecha"></span></p>
+        <p>Viaje/Quincena: <span id="periodo"></span></p>
+        <div class="horizontal-line"></div>
+        <p class="left-aligned">Empleado: <span id="empleado"></span></p>
+        <p class="right-aligned">Monto: <span id="monto"></span></p>
+        <div class="horizontal-line"></div>
+        <p>Entregado por: <span id="entrego"></span></p>
+        <div class="horizontal-line"></div>
+        <p>Observaciones: <span id="observacion"></span></p>
+        <div class="horizontal-line"></div>
+        <br><br><br>
+        <p>______________________________________</p>
+        <p class="left-aligned">Firma empleado</p>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+          var urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param); 
+        }
+
+    function fillData() {
+        document.getElementById("fecha").textContent =
+          getQueryParam("fecha");
+        document.getElementById("periodo").textContent =
+          getQueryParam("periodo");
+        document.getElementById("monto").textContent =
+          getQueryParam("monto");
+        document.getElementById("empleado").textContent =
+          getQueryParam("empleado");
+        document.getElementById("entrego").textContent =
+          getQueryParam("entrego");
+        document.getElementById("observacion").textContent =
+          getQueryParam("observacion");       
+         }
+         
+      window.onload = function () {
+        fillData();
+        window.print();
+      }
+    </script>
+    
+</body>
+</html>
