@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boleta de pago</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1;
+            margin: 25px;
+        }
+        .title {
+            text-align: left;
+        }
+        .subtitle {
+            text-align: left;
+            margin-top: 5px;
+        }
+        .section {
+            margin-top: 20px;
+        }
+        .horizontal-line {
+            border-top: 1px solid black;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .centered {
+            text-align: center;
+        }
+        .right-aligned {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>Transporte Marìtimo Caratasca</h1>
+        <h2 class="subtitle">Comprobante de pago empleado</h2>
+    </div>
+
+    <div class="section">
+        <p>Fecha: <span id="fecha"></span></p>
+        <p>Empleado: <span id="cliente"></span></p>
+        <p>Viaje/Periodo: <span id="viaje"></span></p>
+        <p>Destino de la carga: <span id="destino"></span></p>
+        <p>Factura en sistema: <span id="factura"></span></p>
+
+        <div class="horizontal-line"></div>
+        <p class="right-aligned">Saldo anterior: <span id="saldoAnterior"></span></p>
+        <p class="right-aligned">Pago: <span id="pago"></span></p>
+        <p class="right-aligned">Saldo pendiente: <span id="saldoPendiente"></span></p>
+        <p class="right-aligned">Tipo de pago: <span id="tipoPago"></span></p>
+        <p class="left-aligned">Realizado por: <span id="realizo"></span></p>
+        <div class="horizontal-line"></div>
+        <p>Observaciones: <span id="observacion"></span></p>
+        <div class="horizontal-line"></div>
+        <br><br><br>
+        <p>______________________________________</p>
+        <p class="left-aligned">Firma</p>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+          var urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param); 
+        }
+
+    function fillData() {
+        document.getElementById("fecha").textContent =
+          getQueryParam("fecha");
+        document.getElementById("cliente").textContent =
+          getQueryParam("cliente");
+        document.getElementById("viaje").textContent =
+          getQueryParam("viaje");
+document.getElementById("destino").textContent =
+          getQueryParam("destino");
+document.getElementById("factura").textContent =
+          getQueryParam("factura");
+        document.getElementById("saldoAnterior").textContent =
+          getQueryParam("saldoAnterior");
+document.getElementById("pago").textContent =
+          getQueryParam("pago");
+        document.getElementById("saldoPendiente").textContent =
+          getQueryParam("saldoPendiente");
+        document.getElementById("tipoPago").textContent =
+          getQueryParam("tipoPago");
+        document.getElementById("realizo").textContent =
+          getQueryParam("realizo");
+        document.getElementById("observacion").textContent =
+          getQueryParam("observacion");       
+         }
+         
+      window.onload = function () {
+        fillData();
+        window.print();
+      }
+    </script>
+    
+</body>
+</html>
