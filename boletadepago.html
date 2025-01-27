@@ -1,102 +1,248 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boleta de pago</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 15px;
-            line-height: 1;
-            margin: 25px;
-        }
-        .title {
-            text-align: left;
-        }
-        .subtitle {
-            text-align: left;
-            margin-top: 5px;
-        }
-        .section {
-            margin-top: 20px;
-        }
-        .horizontal-line {
-            border-top: 1px solid black;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .centered {
-            text-align: center;
-        }
-        .right-aligned {
-            text-align: right;
-        }
-    </style>
-</head>
-<body>
-    <div class="title">
-        <h1>Transporte Marìtimo Caratasca</h1>
-        <h2 class="subtitle">Comprobante de pago empleado</h2>
-    </div>
 
-    <div class="section">
-        <p>Fecha: <span id="fecha"></span></p>
-        <p>Empleado: <span id="cliente"></span></p>
-        <p>Viaje/Periodo: <span id="viaje"></span></p>
-        <p>Destino de la carga: <span id="destino"></span></p>
-        <p>Factura en sistema: <span id="factura"></span></p>
-
-        <div class="horizontal-line"></div>
-        <p class="right-aligned">Saldo anterior: <span id="saldoAnterior"></span></p>
-        <p class="right-aligned">Pago: <span id="pago"></span></p>
-        <p class="right-aligned">Saldo pendiente: <span id="saldoPendiente"></span></p>
-        <p class="right-aligned">Tipo de pago: <span id="tipoPago"></span></p>
-        <p class="left-aligned">Realizado por: <span id="realizo"></span></p>
-        <div class="horizontal-line"></div>
-        <p>Observaciones: <span id="observacion"></span></p>
-        <div class="horizontal-line"></div>
-        <br><br><br>
-        <p>______________________________________</p>
-        <p class="left-aligned">Firma</p>
-    </div>
-
-    <script>
-        function getQueryParam(param) {
-          var urlParams = new URLSearchParams(window.location.search);
-          return urlParams.get(param); 
-        }
-
-    function fillData() {
-        document.getElementById("fecha").textContent =
-          getQueryParam("fecha");
-        document.getElementById("cliente").textContent =
-          getQueryParam("cliente");
-        document.getElementById("viaje").textContent =
-          getQueryParam("viaje");
-document.getElementById("destino").textContent =
-          getQueryParam("destino");
-document.getElementById("factura").textContent =
-          getQueryParam("factura");
-        document.getElementById("saldoAnterior").textContent =
-          getQueryParam("saldoAnterior");
-document.getElementById("pago").textContent =
-          getQueryParam("pago");
-        document.getElementById("saldoPendiente").textContent =
-          getQueryParam("saldoPendiente");
-        document.getElementById("tipoPago").textContent =
-          getQueryParam("tipoPago");
-        document.getElementById("realizo").textContent =
-          getQueryParam("realizo");
-        document.getElementById("observacion").textContent =
-          getQueryParam("observacion");       
-         }
-         
-      window.onload = function () {
-        fillData();
-        window.print();
+    <style type="text/css">
+        #letter-size {
+        width: 5.5in;
+        margin: 0in;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        margin-left: 0.2in;
+        margin-right: 0.2in;
+        margin-top: 0.5in;
+        margin-bottom: 0.5in;
       }
-    </script>
-    
+      
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+
+  table,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+
+      .mi-imagen {
+        width: 100px;
+        height: 100px;
+        padding: auto;
+        align: center;
+        vertical-align: center;
+      }
+
+      h3{
+        padding-top: 0%;
+        height: 0px;
+      }
+
+      h4{
+        padding-top: 0%;
+        height: 0px;
+        margin-top: 0%;
+      }
+
+      h5{
+        padding-top: 0%;
+        height: 0%;
+        margin-top: 0%;
+      }
+
+      .datos-emp{
+        text-align: left;
+      }
+
+      .devengos{
+        text-align: left;
+      }
+
+      .deducciones{
+        text-align: left;
+      }
+      
+      .moneda{
+        text-align: right;
+      }
+
+      .line{
+        padding: 0%;
+        height: 0px;
+      }
+      
+      .observacion{
+        text-align: left;        
+        height: 0px;
+        padding-top: 0%;
+        margin-top: 0%;
+        line-height: 0%;
+      }
+
+      </style>
+
+</head>
+<table>
+  <tr>
+    <td colspan="2" style="width: 10%;" class="mi-imagen">
+      <img src="https://www.facebook.com/photo/?fbid=122095199558057989&set=a.122095192574057989" alt="">
+    </td>
+    <td colspan="8" style="width: 90%;">
+      <h3>TRANSPORTE MARÍTIMO CARATASCA S DE R. L</h3>
+      <h5>RTN: 05019023477088. Barrio la Mora, contiguo a CarGoz, 1ra y 2da calle, 5ta avenida. Puerto
+        Lempira, Gracias a Dios. Teléfono: 3372-0979
+        Email: caratascapuertolempira@gmail.com</h5>
+        <h4>BOUCHER DE PAGO Folio: 01041522</h4>
+    </td>
+  </tr>
+      <td colspan="6" style="width: 50%;" class="datos-emp">
+        <b>Empleado:<span id="empleado"></span></b><br>
+        <b>Identidad:<span id="identidad"></span></b><br>
+        <b>Telefono:<span id="telefono"></span></b><br>
+        <b>Ubicacíon:<span id="ubicacion"></span></b><br>
+        <b>Puesto:<span id="puesto"></span></b><br>
+      </td>
+      <td colspan="6" style="width: 50%;" class="datos-emp">
+        <b>Fecha de ingreso:<span id="ingreso"></span></b><br>
+        <b>Entidad financiera (banco):<span id="banco"></span></b><br>
+        <b>Número de cuenta:<span id="cuenta"></span></b><br>
+        <b>Planilla:<span id="planilla"></span></b><br>
+        <b>Referencia:<span id="referencia"></span></b><br>
+      </td>
+  </tr>
+  <tr>
+    <td colspan="3" style="width: 25%;">DEVENGOS</td>
+    <td colspan="3" style="width: 25%;">TOTALES</td>
+    <td colspan="3" style="width: 25%;">DEDUCCIONES</td>
+    <td colspan="3" style="width: 25%;">TOTALES</td>
+  </tr>
+  <tr>
+    <td colspan="3" style="width: 25%;" class="devengos">
+    <b>Sueldo base:<span></span></b>
+    <p class="line">-------------------</p>
+    <b>Dias:<span id="dias"></span></b><br>
+    <b>Noches:<span id="noches"></span></b><br>
+    <b>Medios dias:<span id="mediosdias"></span></b><br></td>
+    <td colspan="3" style="width: 25%;" class="devengos">
+    <b><span id="sueldobase" class="moneda"></span></b>
+    <p class="line">-------------------</p>
+      <b>Medias noches:<span id="mediasnoches"></span></b><br>
+      <b>Horas:<span id="horas"></span></b><br>      
+    </td>
+    <td colspan="3" style="width: 25%;" class="deducciones">      
+    <b>Adelantos:<span></span></b><br>
+    <b>Seguro social:<span></span></b><br>
+    <b>Préstamos:<span></span></b><br>
+    <b>Otras deducciones:<span></span></b><br></td>
+    </td>
+    <td colspan="3" style="width: 25%;" class="moneda">
+      <b><span id="adelantos"></span></b><br>
+      <b><span id="ihss"></span></b><br>
+      <b><span id="prestamos"></span></b><br>
+      <b><span id="otrasdeduccciones"></span></b><br></td>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3" style="width: 25%;">TOTAL DEVENGADO</td>
+    <td colspan="3" style="width: 25%;" class="moneda">
+      <b><span id="totalingreso"></span></b><br>
+    </td>
+    <td colspan="3" style="width: 25%;">TOTAL DEDUCCION</td>
+    <td colspan="3" style="width: 25%;" class="moneda">
+      <b><span id="totaldeduccion"></span></b><br>
+    </td>
+  </tr>
+  <tr>
+    <th rowspan="2" colspan="6" class="observacion"><b>OBSERVACIONES:</b>
+      <p><span id="observaciones"></span></p>
+    </th>
+    <th colspan="3">
+      <b><p>PAGO NETO</p></b>
+    </th>
+    <th colspan="3">
+      <b><span id="pagoneto" class="modena"></span></b><br>
+    </th>
+  </tr>
+  <tr>
+    <th colspan="3">
+      <b><p>PAGADO</p></b>
+    </th>
+    <th colspan="3">
+      <b><span id="pagado" class="moneda"></span></b><br>
+    </th>
+  </tr>
+<tr>
+  <td colspan="6" style="width: 50%;">
+    <p>FIRMA Y SELLO RRHH</p><br><br><br>
+  </td>
+  <td colspan="6" style="width: 50%;">
+    <p>FIRMA TRABAJADOR</p><br><br><br>
+  </td>
+</tr>
+
+</table>
+
+<script>
+  function getQueryParam(param) {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param); 
+  }
+
+function fillData() {
+  document.getElementById("folio").textContent =
+    getQueryParam("folio");
+  document.getElementById("empleado").textContent =
+    getQueryParam("empleado");
+  document.getElementById("identidad").textContent =
+    getQueryParam("identidad");
+  document.getElementById("telefono").textContent =
+    getQueryParam("telefono");
+  document.getElementById("ubicacion").textContent =
+    getQueryParam("ubicacion");
+  document.getElementById("puesto").textContent =
+    getQueryParam("puesto");  
+    document.getElementById("fecha").textContent =
+    getQueryParam("fecha");
+  document.getElementById("planilla").textContent =
+    getQueryParam("planilla");
+  document.getElementById("referencia").textContent =
+    getQueryParam("referencia");
+  document.getElementById("sueldobase").textContent =
+    getQueryParam("sueldobase");
+  document.getElementById("dias").textContent =
+    getQueryParam("noches");
+  document.getElementById("mediosdias").textContent =
+    getQueryParam("mediasnoches");
+    document.getElementById("horas").textContent =
+    getQueryParam("horas");
+  document.getElementById("adelantos").textContent =
+    getQueryParam("adelantos");
+  document.getElementById("prestamos").textContent =
+    getQueryParam("prestamos");
+  document.getElementById("tottaldevengado").textContent =
+    getQueryParam("totaldevengado");
+  document.getElementById("totaldeduccion").textContent =
+    getQueryParam("totaldeduccion");
+  document.getElementById("pagoneto").textContent =
+    getQueryParam("pagoneto");
+    document.getElementById("pagado").textContent =
+    getQueryParam("pagado");
+  document.getElementById("observaciones").textContent =
+    getQueryParam("observaciones");
+  }
+   
+window.onload = function () {
+  fillData();
+  window.print();
+}
+</script>
+
 </body>
 </html>
