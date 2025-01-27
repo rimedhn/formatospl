@@ -210,6 +210,12 @@ function fillData() {
     getQueryParam("puesto");  
     document.getElementById("fecha").textContent =
     getQueryParam("fecha");
+    document.getElementById("ingreso").textContent =
+    getQueryParam("ingreso");
+    document.getElementById("banco").textContent =
+    getQueryParam("banco");
+    document.getElementById("cuenta").textContent =
+    getQueryParam("cuenta");
   document.getElementById("planilla").textContent =
     getQueryParam("planilla");
   document.getElementById("referencia").textContent =
@@ -217,17 +223,25 @@ function fillData() {
   document.getElementById("sueldobase").textContent =
     getQueryParam("sueldobase");
   document.getElementById("dias").textContent =
-    getQueryParam("noches");
+    getQueryParam("dias");
   document.getElementById("mediosdias").textContent =
+    getQueryParam("mediosdias");
+    document.getElementById("noches").textContent =
+    getQueryParam("noches");
+  document.getElementById("mediasnoches").textContent =
     getQueryParam("mediasnoches");
     document.getElementById("horas").textContent =
     getQueryParam("horas");
+    document.getElementById("totalingreso").textContent =
+    getQueryParam("totalingreso");
   document.getElementById("adelantos").textContent =
     getQueryParam("adelantos");
   document.getElementById("prestamos").textContent =
     getQueryParam("prestamos");
-  document.getElementById("tottaldevengado").textContent =
-    getQueryParam("totaldevengado");
+    document.getElementById("ihss").textContent =
+    getQueryParam("ihss");
+    document.getElementById("otrasdeducciones").textContent =
+    getQueryParam("otrasdeducciones");
   document.getElementById("totaldeduccion").textContent =
     getQueryParam("totaldeduccion");
   document.getElementById("pagoneto").textContent =
@@ -243,6 +257,5 @@ window.onload = function () {
   window.print();
 }
 </script>
-
 </body>
 </html>
