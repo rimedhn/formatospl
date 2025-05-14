@@ -64,8 +64,8 @@
         <tr class="header-row">
             <td class="logo-cell"><img src="https://raw.githubusercontent.com/rimedhn/formatospl/refs/heads/main/logoindex.jpeg" alt="Logo"></td>
             <td class="company-info-cell">
-                <div class="company-name" id="company"></div>
-                <div class="folio"><span class="label">Folio:</span> <span id="folio"></span></div>
+                <div class="company-name">TRANSPORTE MARÍTIMO CARATASCA</div>
+                <div class="folio"><span class="label">ETIQUETA DE CARGA:</span> <span id="folio"></span></div>
             </td>
             <td class="barcode-cell"><div class="barcode" id="barcode"></div></td>
         </tr>
@@ -109,7 +109,6 @@
 
         function fillData() {
             document.getElementById("estado").src = getQueryParam("estado");
-            document.getElementById("company").textContent = getQueryParam("company");
             document.getElementById("folio").textContent = getQueryParam("folio");
             document.getElementById("barcode").textContent = getQueryParam("barcode");
             document.getElementById("fecha").textContent = getQueryParam("fecha");
