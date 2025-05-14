@@ -64,10 +64,10 @@
         <tr class="header-row">
             <td class="logo-cell"><img id="logo" src="" alt="Logo"></td>
             <td class="company-info-cell">
-                <div class="company-name" id="companyName"></div>
-                <div class="folio"><span class="label">Folio:</span> <span id="folioValue"></span></div>
+                <div class="company-name" id="company"></div>
+                <div class="folio"><span class="label">Folio:</span> <span id="folio"></span></div>
             </td>
-            <td class="barcode-cell"><div class="barcode" id="barcodeValue"></div></td>
+            <td class="barcode-cell"><div class="barcode" id="barcode"></div></td>
         </tr>
         <tr>
             <td class="label">Fecha:</td>
@@ -96,8 +96,8 @@
         <tr>
             <td class="label">Observación:</td>
             <td id="observacion"></td>
-            <td></td>
-            <td></td>
+            <td class="label">Contacto:</td>
+            <td id="contacto"></td>
         </tr>
     </table>
 
@@ -109,9 +109,9 @@
 
         function fillData() {
             document.getElementById("logo").src = getQueryParam("logo");
-            document.getElementById("companyName").textContent = getQueryParam("companyName");
-            document.getElementById("folioValue").textContent = getQueryParam("folio");
-            document.getElementById("barcodeValue").textContent = getQueryParam("barcode");
+            document.getElementById("company").textContent = getQueryParam("company");
+            document.getElementById("folio").textContent = getQueryParam("folio");
+            document.getElementById("barcode").textContent = getQueryParam("barcode");
             document.getElementById("fecha").textContent = getQueryParam("fecha");
             document.getElementById("recibe").textContent = getQueryParam("recibe");
             document.getElementById("destino").textContent = getQueryParam("destino");
@@ -120,12 +120,13 @@
             document.getElementById("viaje").textContent = getQueryParam("viaje");
             document.getElementById("envia").textContent = getQueryParam("envia");
             document.getElementById("origen").textContent = getQueryParam("origen");
+            document.getElementById("contacto").textContent = getQueryParam("contacto");
         }
 
         window.onload = function() {
             fillData();
             // Descomenta la siguiente línea si quieres que se imprima automáticamente
-            // window.print();
+            window.print();
         };
     </script>
 </body>
