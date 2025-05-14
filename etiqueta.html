@@ -62,7 +62,7 @@
 <body>
     <table>
         <tr class="header-row">
-            <td class="logo-cell"><img id="logo" src="https://raw.githubusercontent.com/rimedhn/formatospl/refs/heads/main/logoindex.jpeg" alt="Logo"></td>
+            <td class="logo-cell"><img src="https://raw.githubusercontent.com/rimedhn/formatospl/refs/heads/main/logoindex.jpeg" alt="Logo"></td>
             <td class="company-info-cell">
                 <div class="company-name" id="company"></div>
                 <div class="folio"><span class="label">Folio:</span> <span id="folio"></span></div>
@@ -90,8 +90,8 @@
         <tr>
             <td class="label">Teléfono:</td>
             <td id="telefono"></td>
-            <td></td>
-            <td></td>
+            <td class="label">Estado:</td>
+            <td id="estado"></td>
         </tr>
         <tr>
             <td class="label">Observación:</td>
@@ -108,7 +108,7 @@
         }
 
         function fillData() {
-            document.getElementById("logo").src = getQueryParam("logo");
+            document.getElementById("estado").src = getQueryParam("estado");
             document.getElementById("company").textContent = getQueryParam("company");
             document.getElementById("folio").textContent = getQueryParam("folio");
             document.getElementById("barcode").textContent = getQueryParam("barcode");
