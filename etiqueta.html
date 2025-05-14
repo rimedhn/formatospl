@@ -116,7 +116,6 @@
         }
 
         function fillData() {
-            document.getElementById("estado").src = getQueryParam("estado");
             document.getElementById("folio").textContent = getQueryParam("folio");
             document.getElementById("barcode").textContent = getQueryParam("barcode");
             document.getElementById("fecha").textContent = getQueryParam("fecha");
@@ -128,7 +127,7 @@
             document.getElementById("envia").textContent = getQueryParam("envia");
             document.getElementById("origen").textContent = getQueryParam("origen");
             document.getElementById("contacto").textContent = getQueryParam("contacto");
-        
+            document.getElementById("estado").src = getQueryParam("estado");           
                 // Set barcode
         document.getElementById("barcode").src =
           "https://barcode.tec-it.com/barcode.ashx?data=" +
