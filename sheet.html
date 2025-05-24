@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CARATASCA</title>
+    <link rel="icon" href="https://github.com/rimedhn/formatospl/blob/main/logoindex.jpeg?raw=true" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        #invoice-container {
+            width: 8.5in; /* Standard letter size width */
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .company-info {
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        .company-info b {
+            display: block;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2em;
+            text-transform: uppercase;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .details-table th, .details-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .details-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            color: #555;
+            width: 50%;
+        }
+
+        .details-table td div {
+            line-height: 1.8;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .product-table th, .product-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .product-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .product-table .description {
+            text-align: left;
+        }
+
+        .summary-section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .notes-section {
+            width: 60%;
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: #f9f9f9;
+            line-height: 1.8;
+            font-size: 0.95em;
+            margin-right: 20px;
+            box-sizing: border-box;
+        }
+
+        .notes-section div {
+            text-align: center;
+            margin: 10px 0;
+            color: #888;
+        }
+
+        .totals-section {
+            width: 40%;
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+        }
+
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .totals-row:last-child {
+            border-bottom: none;
+        }
+
+        .totals-row b {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .footer-message {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.1em;
+            color: #666;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div id="invoice-container">
+        <div class="header">
+            <img src="https://github.com/rimedhn/formatospl/blob/main/logoindex.jpeg?raw=true" alt="Company Logo" />
+            <div class="company-info">
+                <b id="empresa"></b>
+                <b id="rtn"></b>
+                <b id="direccion"></b>
+                <b id="telefono"></b>
+                <b id="email"></b>
+            </div>
+        </div>
+
+        <h1> id="tipodoc"</h1>
+
+        <table class="details-table">
+            <tr>
+                <th>Datos Cliente</th>
+                <th>Datos Factura</th>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <b>Cliente: <span id="cliente"></span></b><br>
+                        <b>RTN: <span id="rtncliente"></span></b><br>
+                        <b>Teléfono: <span id="telefonocliente"></span></b><br>
+                        <b>Dirección: <span id="direccioncliente"></span></b><br>
+                        <b>Recibió: <span id="vendedor"></span></b><br>
+                        <b>Folio: <span id="folio"></span></b><br>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <b>Factura: <span id="factura"></span></b><br>
+                        <b>Fecha: <span id="date"></span></b><br>
+                        <b>CAI: <span id="cai"></span></b><br>
+                        <b>Rango: <span id="rango"></span></b><br>
+                        <b>Fecha límite: <span id="limite"></span></b><br>
+                        <b>Cajero: <span id="cajero"></span></b><br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Cant</th>
+                    <th class="description">Descripción</th>
+                    <th>Precio</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody id="product-list">
+                </tbody>
+        </table>
+
+        <div class="summary-section">
+            <div class="notes-section">
+                Orden de compra exenta: <span id="ocexe"></span>
+                <br>
+                No. Registro exonerado: <span id="ocexo"></span>
+                <br>
+                No. Registro SAG: <span id="nosag"></span>
+                <br>
+                <div>------------------------------------------------------------------------</div>
+                Observaciones: <span id="observacion"></span>
+                <br>
+                <div>------------------------------------------------------------------------</div>
+                Son: <span id="montoletras"></span> Lempiras
+                <br>
+                Gracias por su compra!!
+                <br>
+                Original: Cliente, Copia: Emisor
+            </div>
+
+            <div class="totals-section">
+                <div class="totals-row">
+                    <span>Subtotal:</span>
+                    <span>L<span id="subtotal"></span></span>
+                </div>
+                <div class="totals-row">
+                    <span>Descuento:</span>
+                    <span>L<span id="descuento"></span></span>
+                </div>
+                <div class="totals-row">
+                    <span>Subtotal exento:</span>
+                    <span>L<span id="subtotalexe"></span></span>
+                </div>
+                <div class="totals-row">
+                    <span>Subtotal exonerado:</span>
+                    <span>L<span id="subtotalexo"></span></span>
+                </div>
+                <div class="totals-row">
+                    <span>Gravado 15%:</span>
+                    <span>L<span id="subtotalisv15"></span></span>
+                </div>
+                <div class="totals-row">
+                    <span>Gravado 18%:</span>
+                    <span>L<span id="subtotalisv18"></span></span>
+                </div>
+                <div class="totals-row">
+                    <span>ISV 15%:</span>
+                    <span>L<span id="isv15"></span></span>
+                </div>
+                <div class="totals-row">
+                    <span>ISV 18%:</span>
+                    <span>L<span id="isv18"></span></span>
+                </div>
+                <div class="totals-row">
+                    <b>Total venta:</b>
+                    <b>L<span id="total"></span></b>
+                </div>
+                <div class="totals-row">
+                    <span>Recibido:</span>
+                    <span>L<span id="recibido"></span></span>
+                </div>
+                <div class="totals-row">
+                    <span>Cambio:</span>
+                    <span>L<span id="cambio"></span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-message">
+            ¡Esperamos verte de nuevo!
+        </div>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const params = {};
+            window.location.search.substring(1).split("&").forEach(param => {
+                const parts = param.split("=");
+                params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1] || '');
+            });
+            return params;
+        }
+
+        const params = getQueryParams();
+
+        // Function to safely get a parameter or an empty string
+        const getParam = (name) => params[name] || '';
+
+        // Populate Company Info
+        document.getElementById('empresa').textContent = getParam('empresa');
+        document.getElementById('rtn').textContent = 'RTN: ' + getParam('rtn');
+        document.getElementById('direccion').textContent = 'Dirección: ' + getParam('direccion');
+        document.getElementById('telefono').textContent = 'Teléfono: ' + getParam('telefono');
+        document.getElementById('email').textContent = 'Email: ' + getParam('email');
+
+        // Populate Client Info
+        document.getElementById('cliente').textContent = getParam('cliente');
+        document.getElementById('rtncliente').textContent = getParam('rtncliente');
+        document.getElementById('telefonocliente').textContent = getParam('telefonocliente');
+        document.getElementById('direccioncliente').textContent = getParam('direccioncliente');
+        document.getElementById('vendedor').textContent = getParam('vendedor');
+        document.getElementById('folio').textContent = getParam('folio');
+
+        // Populate Invoice Info
+        document.getElementById('factura').textContent = getParam('factura');
+        document.getElementById('date').textContent = getParam('date');
+        document.getElementById('cai').textContent = getParam('cai');
+        document.getElementById('rango').textContent = getParam('rango');
+        document.getElementById('limite').textContent = getParam('limite');
+        document.getElementById('cajero').textContent = getParam('cajero');
+
+        // Populate Product Details
+        const descriptions = getParam('descriptions').split(',');
+        const quantitys = getParam('quantitys').split(',');
+        const prices = getParam('price').split(',');
+        const amounts = getParam('amounts').split(',');
+
+        const productList = document.getElementById('product-list');
+        for (let i = 0; i < descriptions.length; i++) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${quantitys[i] || ''}</td>
+                <td class="description">${descriptions[i] || ''}</td>
+                <td>${prices[i] || ''}</td>
+                <td>${amounts[i] || ''}</td>
+            `;
+            productList.appendChild(row);
+        }
+
+        // Populate Other Invoice Data
+        document.getElementById('ocexe').textContent = getParam('ocexe');
+        document.getElementById('ocexo').textContent = getParam('ocexo');
+        document.getElementById('nosag').textContent = getParam('nosag');
+        document.getElementById('observacion').textContent = getParam('observacion');
+        document.getElementById('montoletras').textContent = getParam('montoletras');
+
+        document.getElementById('subtotal').textContent = getParam('subtotal');
+        document.getElementById('descuento').textContent = getParam('descuento');
+        document.getElementById('subtotalexe').textContent = getParam('subtotalexe');
+        document.getElementById('subtotalexo').textContent = getParam('subtotalexo');
+        document.getElementById('subtotalisv15').textContent = getParam('subtotalisv15');
+        document.getElementById('subtotalisv18').textContent = getParam('subtotalisv18');
+        document.getElementById('isv15').textContent = getParam('isv15');
+        document.getElementById('isv18').textContent = getParam('isv18');
+        document.getElementById('total').textContent = getParam('total');
+        document.getElementById('recibido').textContent = getParam('recibido');
+        document.getElementById('cambio').textContent = getParam('cambio');
+    </script>
+</body>
+</html>
