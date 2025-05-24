@@ -7,7 +7,7 @@
     <link rel="icon" href="https://github.com/rimedhn/formatospl/blob/main/logoindex.jpeg?raw=true" type="image/x-icon">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 20px;
             background-color: #f4f4f4;
@@ -18,36 +18,41 @@
         }
 
         #invoice-container {
-            width: 8.5in; /* Standard letter size width */
-            padding: 30px;
+            width: 8.5in; /* Letter size width */
+            min-height: 11in; /* Letter size height */
+            padding: 0.75in; /* Padding to simulate margins */
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
+            box-sizing: border-box; /* Include padding in the width/height */
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            align-items: center; /* Align items vertically in the middle */
             margin-bottom: 30px;
             border-bottom: 2px solid #eee;
             padding-bottom: 20px;
         }
 
         .header img {
-            max-width: 120px;
+            max-width: 120px; /* Adjust logo size as needed */
             height: auto;
+            margin-right: 25px; /* Space between logo and company info */
+            vertical-align: middle; /* Ensure image alignment */
         }
 
         .company-info {
-            text-align: right;
+            text-align: left; /* Align text to the left */
             line-height: 1.6;
+            flex-grow: 1; /* Allows company info to take available space */
         }
 
         .company-info b {
             display: block;
-            font-size: 1.1em;
+            font-size: 1.05em;
             color: #333;
         }
 
@@ -55,60 +60,65 @@
             text-align: center;
             color: #2c3e50;
             margin-bottom: 30px;
-            font-size: 2em;
+            font-size: 2.2em;
             text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
         }
 
         .details-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .details-table th, .details-table td {
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 10px;
             text-align: left;
             vertical-align: top;
+            font-size: 0.9em;
         }
 
         .details-table th {
             background-color: #f0f0f0;
             font-weight: bold;
             color: #555;
-            width: 50%;
+            width: 50%; /* Distribute columns evenly */
         }
 
         .details-table td div {
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         .product-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .product-table th, .product-table td {
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
+            font-size: 0.9em;
         }
 
         .product-table th {
             background-color: #f0f0f0;
             font-weight: bold;
             color: #555;
-            font-size: 0.9em;
         }
 
         .product-table .description {
             text-align: left;
+            width: 50%; /* Allocate more space for description */
         }
 
         .summary-section {
             display: flex;
             justify-content: space-between;
+            margin-top: auto; /* Push summary to the bottom */
         }
 
         .notes-section {
@@ -116,15 +126,16 @@
             border: 1px solid #ddd;
             padding: 15px;
             background-color: #f9f9f9;
-            line-height: 1.8;
-            font-size: 0.95em;
+            line-height: 1.7;
+            font-size: 0.9em;
             margin-right: 20px;
             box-sizing: border-box;
+            border-radius: 5px;
         }
 
         .notes-section div {
             text-align: center;
-            margin: 10px 0;
+            margin: 8px 0;
             color: #888;
         }
 
@@ -134,6 +145,7 @@
             padding: 15px;
             background-color: #f9f9f9;
             box-sizing: border-box;
+            border-radius: 5px;
         }
 
         .totals-row {
@@ -145,6 +157,11 @@
 
         .totals-row:last-child {
             border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .totals-row span {
+            font-size: 0.95em;
         }
 
         .totals-row b {
@@ -155,17 +172,34 @@
         .footer-message {
             text-align: center;
             margin-top: 30px;
-            font-size: 1.1em;
+            font-size: 1em;
             color: #666;
             padding-top: 20px;
             border-top: 2px solid #eee;
+        }
+
+        /* Print styles for better output */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+            }
+            #invoice-container {
+                width: 8.5in;
+                min-height: 11in;
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+                page-break-after: always;
+            }
         }
     </style>
 </head>
 <body>
     <div id="invoice-container">
         <div class="header">
-            <img src="https://github.com/rimedhn/formatospl/blob/main/logoindex.jpeg?raw=true" alt="Company Logo" />
+            <img src="https://github.com/rimedhn/demo/blob/main/Logo.png?raw=true" alt="Company Logo" />
             <div class="company-info">
                 <b id="empresa"></b>
                 <b id="rtn"></b>
@@ -175,7 +209,7 @@
             </div>
         </div>
 
-        <h1> id="tipodoc"</h1>
+        <h1>FACTURA</h1>
 
         <table class="details-table">
             <tr>
@@ -328,6 +362,7 @@
         document.getElementById('rango').textContent = getParam('rango');
         document.getElementById('limite').textContent = getParam('limite');
         document.getElementById('cajero').textContent = getParam('cajero');
+        document.getElementById('tipodoc').textContent = getParam('tipodoc');
 
         // Populate Product Details
         const descriptions = getParam('descriptions').split(',');
@@ -336,6 +371,8 @@
         const amounts = getParam('amounts').split(',');
 
         const productList = document.getElementById('product-list');
+        // Clear existing rows (if any, for dynamic updates)
+        productList.innerHTML = ''; 
         for (let i = 0; i < descriptions.length; i++) {
             const row = document.createElement('tr');
             row.innerHTML = `
