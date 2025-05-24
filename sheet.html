@@ -209,7 +209,7 @@
             </div>
         </div>
 
-        <h1>FACTURA</h1>
+        <h1  id="tipodoc"></h1>
 
         <table class="details-table">
             <tr>
@@ -362,6 +362,7 @@
         document.getElementById('rango').textContent = getParam('rango');
         document.getElementById('limite').textContent = getParam('limite');
         document.getElementById('cajero').textContent = getParam('cajero');
+        document.getElementById('tipodoc').textContent = getParam('tipodoc');
 
         // Populate Product Details
         const descriptions = getParam('descriptions').split(',');
@@ -401,10 +402,11 @@
         document.getElementById('total').textContent = getParam('total');
         document.getElementById('recibido').textContent = getParam('recibido');
         document.getElementById('cambio').textContent = getParam('cambio');
-     
-        // Trigger print when the page loads
+
+      // Trigger print when the page loads
       window.onload = function () {
         window.print();
+      };
         
     </script>
 </body>
