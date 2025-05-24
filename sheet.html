@@ -401,7 +401,10 @@
         document.getElementById('total').textContent = getParam('total');
         document.getElementById('recibido').textContent = getParam('recibido');
         document.getElementById('cambio').textContent = getParam('cambio');
-
+     
+        // Trigger print when the page loads
+      window.onload = function () {
+        window.print();
         
     </script>
 </body>
