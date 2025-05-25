@@ -220,12 +220,13 @@
             <tr>
                 <td>
                     <div>
+                        <b>Folio: <span id="destino"></span></b><br>
                         <b>Cliente: <span id="cliente"></span></b><br>
                         <b>RTN: <span id="rtncliente"></span></b><br>
                         <b>Teléfono: <span id="telefonocliente"></span></b><br>
                         <b>Dirección: <span id="direccioncliente"></span></b><br>
-                        <b>Recibió: <span id="vendedor"></span></b><br>
-                        <b>Folio: <span id="folio"></span></b><br>
+                        <b>Folio: <span id="origen"></span></b><br>
+                        <b>Folio: <span id="envia"></span></b><br>
                     </div>
                 </td>
                 <td>
@@ -235,6 +236,8 @@
                         <b>CAI: <span id="cai"></span></b><br>
                         <b>Rango: <span id="rango"></span></b><br>
                         <b>Fecha límite: <span id="limite"></span></b><br>
+                        <b>Folio: <span id="folio"></span></b><br>
+                        <b>Recibió: <span id="vendedor"></span></b><br>
                         <b>Cajero: <span id="cajero"></span></b><br>
                     </div>
                 </td>
@@ -353,8 +356,9 @@
         document.getElementById('rtncliente').textContent = getParam('rtncliente');
         document.getElementById('telefonocliente').textContent = getParam('telefonocliente');
         document.getElementById('direccioncliente').textContent = getParam('direccioncliente');
-        document.getElementById('vendedor').textContent = getParam('vendedor');
-        document.getElementById('folio').textContent = getParam('folio');
+        document.getElementById('origen').textContent = getParam('origen');
+        document.getElementById('destino').textContent = getParam('destino');
+        document.getElementById('envia').textContent = getParam('envia');
 
         // Populate Invoice Info
         document.getElementById('factura').textContent = getParam('factura');
@@ -362,8 +366,10 @@
         document.getElementById('cai').textContent = getParam('cai');
         document.getElementById('rango').textContent = getParam('rango');
         document.getElementById('limite').textContent = getParam('limite');
+        document.getElementById('vendedor').textContent = getParam('vendedor');
         document.getElementById('cajero').textContent = getParam('cajero');
         document.getElementById('tipodoc').textContent = getParam('tipodoc');
+        document.getElementById('folio').textContent = getParam('folio');
 
         // Populate Product Details
         const descriptions = getParam('descriptions').split(',');
