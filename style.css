@@ -1,0 +1,17 @@
+body {
+    background-color: #f7f7f7;
+}
+.card {
+    border-radius: 14px;
+}
+footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+@media (max-width: 768px) {
+    footer {
+        position: relative;
+    }
+}
