@@ -59,13 +59,18 @@ footer {
 
 /* Responsive para móvil */
 @media (max-width: 768px) {
-    .logo {
-        height: 64px;
+        .logo {
+        height: 300px;
         margin-right: 0;
         display: block;
-        margin-left: auto;
+        margin-left: 12%;
         margin-right: auto;
+        text-align: center;
+        }
+    .navbar-brand {
+        display: block;
     }
+    
     footer {
         font-size: 0.7rem;
         padding: 6px 0;
