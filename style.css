@@ -75,7 +75,7 @@ footer {
     }
     .datos-card,
     .productos-card {
-        min-height: 300px;
+        min-height: 260px;
     }
     .productos-card .card-body {
         padding-bottom: 50px; /* Más espacio para el footer */
