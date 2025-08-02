@@ -57,28 +57,30 @@ footer {
     margin-bottom: 0;
 }
 
-/* Responsive para logo y footer */
+/* Responsive para móvil */
 @media (max-width: 768px) {
     .logo {
-        height: 64px;          /* Más grande en móvil */
-        margin-right: 0;       /* Quita margen derecho */
-        display: block;        /* Permite centrar con margin auto */
+        height: 64px;
+        margin-right: 0;
+        display: block;
         margin-left: auto;
         margin-right: auto;
     }
-    
     footer {
-        font-size: 0.9rem;
+        font-size: 0.7rem;
         padding: 6px 0;
     }
     body {
-        padding-bottom: 52px;
+        padding-bottom: 72px; /* Alto real del footer en móvil */
     }
     .datos-card,
     .productos-card {
-        min-height: 280px;
+        min-height: 200px;
     }
     .productos-card .card-body {
-        padding-bottom: 60px;
+        padding-bottom: 80px; /* Más espacio para el footer */
+    }
+    .detalles-lista {
+        max-height: 140px; /* Menor alto para scroll interno */
     }
 }
