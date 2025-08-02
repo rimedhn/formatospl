@@ -79,7 +79,7 @@ footer {
     }
     .productos-card .card-body {
         padding-bottom: 150px; /* Más espacio para el footer */
-        margin-bottom: 150px; /* Más espacio para el footer */
+        margin-bottom: 250px; /* Más espacio para el footer */
     }
     .detalles-lista {
         max-height: 290px; /* Menor alto para scroll interno */
