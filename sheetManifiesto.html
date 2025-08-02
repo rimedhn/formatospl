@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CARATASCA</title>
+    <link rel="icon" href="https://github.com/rimedhn/formatospl/blob/main/logoindex.jpeg?raw=true" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        #invoice-container {
+            width: 8.5in; /* Letter size width */
+            min-height: 11in; /* Letter size height */
+            padding: 0.5in; /* Padding to simulate margins */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box; /* Include padding in the width/height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            align-items: center; /* Align items vertically in the middle */
+            margin-bottom: 5px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .header img {
+            max-width: 120px; /* Adjust logo size as needed */
+            height: auto;
+            margin-right: 25px; /* Space between logo and company info */
+            vertical-align: middle; /* Ensure image alignment */
+        }
+
+        .company-info {
+            text-align: left; /* Align text to the left */
+            line-height: 1;
+            flex-grow: 1; /* Allows company info to take available space */
+        }
+
+        .company-info b {
+            display: block;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.9em;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            margin-top: 0px;
+            padding-bottom: 5px;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        .details-table th, .details-table td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.8em;
+        }
+
+        .details-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            color: #555;
+            width: 50%; /* Distribute columns evenly */
+        }
+
+        .details-table td div {
+            line-height: 1.2;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        .product-table th, .product-table td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .product-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .product-table .description {
+            text-align: left;
+            width: 50%; /* Allocate more space for description */
+        }
+
+        .summary-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto; /* Push summary to the bottom */
+        }
+
+        .notes-section {
+            width: 60%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+            line-height: 1.2;
+            font-size: 0.9em;
+            margin-right: 20px;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        .notes-section div {
+            text-align: center;
+            margin: 8px 0;
+            color: #888;
+        }
+
+        .totals-section {
+            width: 40%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .totals-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .totals-row span {
+            font-size: 0.95em;
+        }
+
+        .totals-row b {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .footer-message {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1em;
+            color: #666;
+            padding-top: 10px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Print styles for better output */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+            }
+            #invoice-container {
+                width: 8.5in;
+                min-height: 11in;
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+                page-break-after: always;
+                padding: 0.5in;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="invoice-container">
+        <div class="header">
+            <img src="https://github.com/rimedhn/formatospl/blob/main/logoindex.jpeg?raw=true" alt="Company Logo" />
+            <div class="company-info">
+                <b id="empresa"></b>
+                <b id="rtn"></b>
+                <b id="direccion"></b>
+                <b id="telefono"></b>
+                <b id="email"></b>
+            </div>
+        </div>
+
+        <h1  id="tipodoc"></h1>
+
+        <table class="details-table">
+            <tr>
+                <th>Datos Cliente</th>
+                <th>Datos de la garga</th>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <b>Destino: <span id="destino"></span></b><br>
+                        <b>Recibe: <span id="cliente"></span></b><br>
+                        <b>RTN: <span id="rtncliente"></span></b><br>
+                        <b>Teléfono: <span id="telefonocliente"></span></b><br>
+                        <b>Dirección: <span id="direccioncliente"></span></b><br>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <b>Fecha: <span id="date"></span></b><br>
+                        <b>Envia: <span id="envia"></span></b><br>
+                        <b>Origen: <span id="origen"></span></b><br>
+                        <b>Folio: <span id="folio"></span></b><br>
+                        <b>Recibió: <span id="vendedor"></span></b><br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Cant</th>
+                    <th class="description">Descripción</th>
+                    <th>Precio</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody id="product-list">
+                </tbody>
+        </table>
+
+        <div class="summary-section">
+            <div class="notes-section">
+                <br>
+                <div>------------------------------------------------------------------------</div>
+                Observaciones: <span id="observacion"></span>
+                <br>
+                <div>------------------------------------------------------------------------</div>
+                Son: <span id="montoletras"></span> Lempiras
+                <br>
+                Gracias por su compra!!
+                <br>
+                Original: Cliente, Copia: Emisor
+            </div>
+
+            <div class="totals-section">
+                <div class="totals-row">
+                    <span>Subtotal:</span>
+                    <span>L<span id="subtotal"></span></span>
+                </div>
+                <div class="totals-row">
+                    <span>Descuento:</span>
+                    <span>L<span id="descuento"></span></span>
+                </div>
+                <div class="totals-row">
+                    <b>Total venta:</b>
+                    <b>L<span id="total"></span></b>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-message">
+            ¡Esperamos verte de nuevo!
+          <b>GUÍA DE SEGUIMIENTO<span id="guia"></span></b>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const params = {};
+            window.location.search.substring(1).split("&").forEach(param => {
+                const parts = param.split("=");
+                params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1] || '');
+            });
+            return params;
+        }
+
+        const params = getQueryParams();
+
+        // Function to safely get a parameter or an empty string
+        const getParam = (name) => params[name] || '';
+
+        // Populate Company Info
+        document.getElementById('empresa').textContent = getParam('empresa');
+        document.getElementById('rtn').textContent = 'RTN: ' + getParam('rtn');
+        document.getElementById('direccion').textContent = 'Dirección: ' + getParam('direccion');
+        document.getElementById('telefono').textContent = 'Teléfono: ' + getParam('telefono');
+        document.getElementById('email').textContent = 'Email: ' + getParam('email');
+
+        // Populate Client Info
+        document.getElementById('cliente').textContent = getParam('cliente');
+        document.getElementById('rtncliente').textContent = getParam('rtncliente');
+        document.getElementById('telefonocliente').textContent = getParam('telefonocliente');
+        document.getElementById('direccioncliente').textContent = getParam('direccioncliente');
+        document.getElementById('origen').textContent = getParam('origen');
+        document.getElementById('destino').textContent = getParam('destino');
+        document.getElementById('envia').textContent = getParam('envia');
+
+        // Populate Invoice Info
+        document.getElementById('date').textContent = getParam('date');
+        document.getElementById('vendedor').textContent = getParam('vendedor');
+        document.getElementById('guia').textContent = getParam('guia');
+        document.getElementById('tipodoc').textContent = getParam('tipodoc');
+        document.getElementById('folio').textContent = getParam('folio');
+
+        // Populate Product Details
+        const descriptions = getParam('descriptions').split(',');
+        const quantitys = getParam('quantitys').split(',');
+        const prices = getParam('price').split(',');
+        const amounts = getParam('amounts').split(',');
+
+        const productList = document.getElementById('product-list');
+        // Clear existing rows (if any, for dynamic updates)
+        productList.innerHTML = ''; 
+        for (let i = 0; i < descriptions.length; i++) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${quantitys[i] || ''}</td>
+                <td class="description">${descriptions[i] || ''}</td>
+                <td>${prices[i] || ''}</td>
+                <td>${amounts[i] || ''}</td>
+            `;
+            productList.appendChild(row);
+        }
+
+        // Populate Other Invoice Data
+        document.getElementById('observacion').textContent = getParam('observacion');
+        document.getElementById('montoletras').textContent = getParam('montoletras');
+        document.getElementById('subtotal').textContent = getParam('subtotal');
+        document.getElementById('descuento').textContent = getParam('descuento');
+        document.getElementById('total').textContent = getParam('total');
+
+      // Trigger print when the page loads
+      window.onload = function () {
+        window.print();
+      };
+        
+    </script>
+</body>
+</html>
