@@ -71,7 +71,7 @@ footer {
         padding: 6px 0;
     }
     body {
-        padding-bottom: 72px; /* Alto real del footer en móvil */
+        padding-bottom: 150px; /* Alto real del footer en móvil */
     }
     .datos-card,
     .productos-card {
