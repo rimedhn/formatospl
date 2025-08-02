@@ -75,12 +75,12 @@ footer {
     }
     .datos-card,
     .productos-card {
-        min-height: 250px;
+        min-height: 300px;
     }
     .productos-card .card-body {
         padding-bottom: 80px; /* Más espacio para el footer */
     }
     .detalles-lista {
-        max-height: 140px; /* Menor alto para scroll interno */
+        max-height: 250px; /* Menor alto para scroll interno */
     }
 }
