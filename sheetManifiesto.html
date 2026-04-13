@@ -278,6 +278,10 @@
                     <span>L<span id="descuento"></span></span>
                 </div>
                 <div class="totals-row">
+                    <b>Ajuste Combustible:</b>
+                    <b>L<span id="ajusteCombustible"></span></b>
+                </div>
+                <div class="totals-row">
                     <b>Total venta:</b>
                     <b>L<span id="total"></span></b>
                 </div>
@@ -353,6 +357,7 @@
         document.getElementById('subtotal').textContent = getParam('subtotal');
         document.getElementById('descuento').textContent = getParam('descuento');
         document.getElementById('total').textContent = getParam('total');
+        document.getElementById('ajusteCombustible').textContent = getParam('ajusteCombustible');
 
       // Trigger print when the page loads
       window.onload = function () {
