@@ -240,6 +240,10 @@
           <td class="detail1">L<span id="descuento"></span></td>
         </tr>
         <tr>
+          <td class="detail">Ajuste Combustible:</td>
+          <td class="detail1">L<span id="ajusteCombustible"></span></td>
+        </tr>
+        <tr>
           <td class="detail">Total venta:</td>
           <td class="detail1">L<span id="total"></span></td>
         </tr>
@@ -303,6 +307,7 @@
       setTextContent("subtotal", getUrlParameter("subtotal"));
       setTextContent("descuento", getUrlParameter("descuento"));
       setTextContent("total", getUrlParameter("total"));
+      setTextContent("ajusteCombustible", getUrlParameter("ajusteCombustible"));
 
       // Populate product table
       var descriptions = getUrlParameter("descriptions").split(",");
