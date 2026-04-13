@@ -310,6 +310,10 @@
           <td class="detail1">L<span id="isv18"></span></td>
         </tr>
         <tr>
+          <td class="detail">Ajuste Combustible:</td>
+          <td class="detail1">L<span id="ajusteCombustible"></span></td>
+        </tr>
+        <tr>
           <td class="detail">Total venta:</td>
           <td class="detail1">L<span id="total"></span></td>
         </tr>
@@ -398,6 +402,7 @@
       setTextContent("total", getUrlParameter("total"));
       setTextContent("recibido", getUrlParameter("recibido"));
       setTextContent("cambio", getUrlParameter("cambio"));
+      setTextContent("ajusteCombustible", getUrlParameter("ajusteCombustible"));
 
       // Populate product table
       var descriptions = getUrlParameter("descriptions").split(",");
